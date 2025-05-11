@@ -1,771 +1,577 @@
-{\rtf1\ansi\ansicpg950\cocoartf2822
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset136 PingFangTC-Regular;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww12720\viewh7240\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gloria老師班級出缺勤紀錄表</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enable class-based dark mode
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE', // Custom primary color
+                        secondary: '#7C3AED', // A vibrant purple for the new section
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* Basic styling for better presentation */
+        body {
+            font-family: 'Inter', sans-serif; /* Using Inter font as a default */
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .table-cell-content {
+            min-width: 100px; /* Ensure cells have a minimum width */
+        }
+        .status-button {
+            transition: background-color 0.2s, transform 0.2s;
+        }
+        .status-button:hover {
+            transform: translateY(-2px);
+        }
+        .status-button.active {
+            box-shadow: 0 0 0 2px white, 0 0 0 4px tailwind.config.theme.extend.colors.primary;
+        }
+        /* Ensure inputs are visible in dark mode */
+        .dark input[type="text"],
+        .dark input[type="number"],
+        .dark input[type="time"],
+        .dark select {
+            background-color: #374151; /* gray-700 */
+            color: #f3f4f6; /* gray-100 */
+            border-color: #4b5563; /* gray-600 */
+        }
+        .dark input::placeholder {
+            color: #9ca3af; /* gray-400 */
+        }
+        .dark option {
+            background-color: #374151;
+            color: #f3f4f6;
+        }
+         /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #2d3748; /* gray-800 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #555;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #777;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen relative transition-colors duration-300">
+    <div class="fixed inset-0 z-0 bg-cover bg-center opacity-10 dark:opacity-5 transition-opacity duration-300" style="background-image: url('https://placehold.co/1920x1080/e0e7ff/4f46e5?text=Abstract+Background');"></div>
 
-\f0\fs24 \cf0 <!DOCTYPE html>\
-<html lang="zh-Hant">\
-<head>\
-    <meta charset="UTF-8">\
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-    <title>Gloria
-\f1 \'a6\'d1\'ae\'76\'af\'5a\'af\'c5\'a5\'58\'af\'ca\'b6\'d4\'ac\'f6\'bf\'fd\'aa\'ed
-\f0 </title>\
-    <script src="https://cdn.tailwindcss.com"></script>\
-    <script>\
-        tailwind.config = \{\
-            darkMode: 'class', // Enable class-based dark mode\
-            theme: \{\
-                extend: \{\
-                    colors: \{\
-                        primary: '#5D5CDE', // Custom primary color\
-                        secondary: '#7C3AED', // A vibrant purple for the new section\
-                    \}\
-                \}\
-            \}\
-        \}\
-    </script>\
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>\
-    <style>\
-        /* Basic styling for better presentation */\
-        body \{\
-            font-family: 'Inter', sans-serif; /* Using Inter font as a default */\
-            transition: background-color 0.3s, color 0.3s;\
-        \}\
-        .table-cell-content \{\
-            min-width: 100px; /* Ensure cells have a minimum width */\
-        \}\
-        .status-button \{\
-            transition: background-color 0.2s, transform 0.2s;\
-        \}\
-        .status-button:hover \{\
-            transform: translateY(-2px);\
-        \}\
-        .status-button.active \{\
-            box-shadow: 0 0 0 2px white, 0 0 0 4px tailwind.config.theme.extend.colors.primary;\
-        \}\
-        /* Ensure inputs are visible in dark mode */\
-        .dark input[type="text"],\
-        .dark input[type="number"],\
-        .dark input[type="time"],\
-        .dark select \{\
-            background-color: #374151; /* gray-700 */\
-            color: #f3f4f6; /* gray-100 */\
-            border-color: #4b5563; /* gray-600 */\
-        \}\
-        .dark input::placeholder \{\
-            color: #9ca3af; /* gray-400 */\
-        \}\
-        .dark option \{\
-            background-color: #374151;\
-            color: #f3f4f6;\
-        \}\
-         /* Custom scrollbar for webkit browsers */\
-        ::-webkit-scrollbar \{\
-            width: 8px;\
-            height: 8px;\
-        \}\
-        ::-webkit-scrollbar-track \{\
-            background: #f1f1f1;\
-            border-radius: 10px;\
-        \}\
-        .dark ::-webkit-scrollbar-track \{\
-            background: #2d3748; /* gray-800 */\
-        \}\
-        ::-webkit-scrollbar-thumb \{\
-            background: #888;\
-            border-radius: 10px;\
-        \}\
-        .dark ::-webkit-scrollbar-thumb \{\
-            background: #555;\
-        \}\
-        ::-webkit-scrollbar-thumb:hover \{\
-            background: #555;\
-        \}\
-        .dark ::-webkit-scrollbar-thumb:hover \{\
-            background: #777;\
-        \}\
-    </style>\
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">\
-</head>\
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen relative transition-colors duration-300">\
-    <div class="fixed inset-0 z-0 bg-cover bg-center opacity-10 dark:opacity-5 transition-opacity duration-300" style="background-image: url('https://placehold.co/1920x1080/e0e7ff/4f46e5?text=Abstract+Background');"></div>\
-\
-    <div class="container mx-auto px-4 py-6 sm:py-8 relative z-10">\
-        <header class="mb-6 sm:mb-8 text-center">\
-            <h1 class="text-3xl sm:text-4xl font-bold text-primary dark:text-violet-400">Gloria
-\f1 \'a6\'d1\'ae\'76\'af\'5a\'af\'c5\'a5\'58\'af\'ca\'b6\'d4\'ac\'f6\'bf\'fd\'aa\'ed
-\f0 </h1>\
-            <div class="mt-3 mb-5 p-3 bg-secondary text-white rounded-lg shadow-md">\
-                <p class="font-bold text-lg sm:text-xl">
-\f1 \'b1\'d0\'ae\'76\'a1\'47
-\f0 Gloria
-\f1 \'a7\'64\'a8\'71\'c4\'f5\'a6\'d1\'ae\'76
-\f0 </p>\
-                <p class="text-sm sm:text-base">Google
-\f1 \'bb\'7b\'c3\'d2\'c1\'bf\'ae\'76
-\f0 , 
-\f1 \'ad\'5e\'a4\'e5\'ad\'dd\'a5\'78\'bb\'79\'b1\'d0\'ae\'76
-\f0 </p>\
-            </div>\
-        </header>\
-\
-        <section id="setup-form" class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 mb-6 sm:mb-8 transition-colors duration-300">\
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">\
-                <div>\
-                    <label for="class-name" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">
-\f1 \'af\'5a\'af\'c5\'a6\'57\'ba\'d9
-\f0 </label>\
-                    <input type="text" id="class-name" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-base bg-gray-50 dark:bg-gray-700 focus:ring-primary focus:border-primary dark:focus:ring-violet-400 dark:focus:border-violet-400 transition-shadow" placeholder="
-\f1 \'a6\'70\'a1\'47\'a4\'54\'a6\'7e\'a4\'47\'af\'5a
-\f0 ">\
-                </div>\
-                <div>\
-                    <label for="class-period" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">
-\f1 \'b2\'c4\'b4\'58\'b8\'60\'bd\'d2
-\f0 </label>\
-                    <select id="class-period" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-base bg-gray-50 dark:bg-gray-700 focus:ring-primary focus:border-primary dark:focus:ring-violet-400 dark:focus:border-violet-400 transition-shadow">\
-                        <option value="1">
-\f1 \'b2\'c4
-\f0 1
-\f1 \'b8\'60
-\f0 </option>\
-                        <option value="2">
-\f1 \'b2\'c4
-\f0 2
-\f1 \'b8\'60
-\f0 </option>\
-                        <option value="3">
-\f1 \'b2\'c4
-\f0 3
-\f1 \'b8\'60
-\f0 </option>\
-                        <option value="4">
-\f1 \'b2\'c4
-\f0 4
-\f1 \'b8\'60
-\f0 </option>\
-                        <option value="5">
-\f1 \'b2\'c4
-\f0 5
-\f1 \'b8\'60
-\f0 </option>\
-                        <option value="6">
-\f1 \'b2\'c4
-\f0 6
-\f1 \'b8\'60
-\f0 </option>\
-                        <option value="7">
-\f1 \'b2\'c4
-\f0 7
-\f1 \'b8\'60
-\f0 </option>\
-                        <option value="8">
-\f1 \'b2\'c4
-\f0 8
-\f1 \'b8\'60
-\f0 </option>\
-                    </select>\
-                </div>\
-                <div>\
-                    <label for="student-count" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">
-\f1 \'be\'c7\'a5\'cd\'a4\'48\'bc\'c6
-\f0 </label>\
-                    <div class="flex">\
-                        <input type="number" id="student-count" min="1" max="100" class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-l-lg text-base bg-gray-50 dark:bg-gray-700 focus:ring-primary focus:border-primary dark:focus:ring-violet-400 dark:focus:border-violet-400 transition-shadow" placeholder="
-\f1 \'bf\'e9\'a4\'4a\'a4\'48\'bc\'c6
-\f0 " value="30">\
-                        <button id="generate-table" class="px-4 py-2 bg-primary hover:bg-violet-700 dark:bg-violet-500 dark:hover:bg-violet-600 text-white rounded-r-lg font-medium transition-colors">
-\f1 \'a5\'cd\'a6\'a8\'aa\'ed\'ae\'e6
-\f0 </button>\
-                    </div>\
-                </div>\
-            </div>\
-        </section>\
-\
-        <nav class="flex mb-4 border-b border-gray-300 dark:border-gray-700">\
-            <button id="edit-tab" class="px-4 py-3 -mb-px border-b-2 border-primary text-primary dark:border-violet-400 dark:text-violet-400 flex-1 md:flex-none font-semibold">
-\f1 \'bd\'73\'bf\'e8\'bc\'d2\'a6\'a1
-\f0 </button>\
-            <button id="view-tab" class="px-4 py-3 border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-violet-400 hover:border-gray-400 dark:hover:border-gray-500 flex-1 md:flex-none font-semibold">
-\f1 \'ac\'64\'ac\'dd\'bc\'d2\'a6\'a1
-\f0 </button>\
-        </nav>\
-\
-        <section id="edit-mode" class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 mb-6 sm:mb-8 transition-colors duration-300">\
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-4 sm:mb-6 text-center">\
-                <div class="bg-green-100 dark:bg-green-800/30 p-3 rounded-lg">\
-                    <div class="text-sm text-green-700 dark:text-green-300">
-\f1 \'a5\'58\'ae\'75
-\f0 </div>\
-                    <div id="present-count" class="text-2xl font-bold text-green-600 dark:text-green-400">0</div>\
-                </div>\
-                <div class="bg-red-100 dark:bg-red-800/30 p-3 rounded-lg">\
-                    <div class="text-sm text-red-700 dark:text-red-300">
-\f1 \'af\'ca\'ae\'75
-\f0 </div>\
-                    <div id="absent-count" class="text-2xl font-bold text-red-600 dark:text-red-400">0</div>\
-                </div>\
-                <div class="bg-yellow-100 dark:bg-yellow-800/30 p-3 rounded-lg">\
-                    <div class="text-sm text-yellow-700 dark:text-yellow-300">
-\f1 \'bf\'f0\'a8\'ec
-\f0 </div>\
-                    <div id="late-count" class="text-2xl font-bold text-yellow-600 dark:text-yellow-400">0</div>\
-                </div>\
-                <div class="bg-blue-100 dark:bg-blue-800/30 p-3 rounded-lg">\
-                    <div class="text-sm text-blue-700 dark:text-blue-300">
-\f1 \'c1\'60\'a4\'48\'bc\'c6
-\f0 </div>\
-                    <div id="total-count" class="text-2xl font-bold text-blue-600 dark:text-blue-400">0</div>\
-                </div>\
-            </div>\
-\
-            <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">\
-                <table id="attendance-table" class="w-full min-w-max">\
-                    <thead class="bg-gray-50 dark:bg-gray-700">\
-                        <tr>\
-                            <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-\f1 \'ae\'79\'b8\'b9
-\f0 </th>\
-                            <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-\f1 \'a5\'58\'af\'ca\'ae\'75\'aa\'ac\'ba\'41
-\f0 </th>\
-                            <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-\f1 \'bf\'f0\'a8\'ec\'ae\'c9\'b6\'a1
-\f0 </th>\
-                        </tr>\
-                    </thead>\
-                    <tbody id="attendance-body" class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">\
-                        <tr><td colspan="3" class="text-center py-10 text-gray-500 dark:text-gray-400">
-\f1 \'bd\'d0\'a5\'fd\'c2\'49\'c0\'bb\'a1\'75\'a5\'cd\'a6\'a8\'aa\'ed\'ae\'e6\'a1\'76
-\f0 </td></tr>\
-                    </tbody>\
-                </table>\
-            </div>\
-\
-            <div class="mt-6 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3">\
-                <button id="reset-btn" class="w-full sm:w-auto px-5 py-2.5 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-lg font-medium transition-colors">
-\f1 \'ad\'ab\'b8\'6d\'aa\'ed\'ae\'e6
-\f0 </button>\
-                <button id="export-btn" class="w-full sm:w-auto px-5 py-2.5 bg-primary hover:bg-violet-700 dark:bg-violet-500 dark:hover:bg-violet-600 text-white rounded-lg font-medium transition-colors">
-\f1 \'b6\'d7\'a5\'58
-\f0 CSV</button>\
-            </div>\
-        </section>\
-\
-        <section id="view-mode" class="hidden bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 mb-6 sm:mb-8 transition-colors duration-300">\
-            <h2 class="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-900 dark:text-white">
-\f1 \'a5\'58\'af\'ca\'ae\'75\'ac\'f6\'bf\'fd\'ba\'4b\'ad\'6e
-\f0 </h2>\
-            \
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 text-gray-700 dark:text-gray-300">\
-                <p><strong class="font-medium">
-\f1 \'af\'5a\'af\'c5
-\f0 :</strong> <span id="summary-class" class="ml-2"></span></p>\
-                <p><strong class="font-medium">
-\f1 \'b8\'60\'a6\'b8
-\f0 :</strong> 
-\f1 \'b2\'c4
-\f0 <span id="summary-period" class="ml-1"></span>
-\f1 \'b8\'60
-\f0 </p>\
-                <p><strong class="font-medium">
-\f1 \'c1\'60\'a4\'48\'bc\'c6
-\f0 :</strong> <span id="summary-total" class="ml-2"></span>
-\f1 \'a4\'48
-\f0 </p>\
-                <p><strong class="font-medium">
-\f1 \'a5\'58\'ae\'75
-\f0 :</strong> <span id="summary-present" class="ml-2"></span>
-\f1 \'a4\'48
-\f0 </p>\
-                <p><strong class="font-medium">
-\f1 \'af\'ca\'ae\'75
-\f0 :</strong> <span id="summary-absent" class="ml-2"></span>
-\f1 \'a4\'48
-\f0 </p>\
-                <p><strong class="font-medium">
-\f1 \'bf\'f0\'a8\'ec
-\f0 :</strong> <span id="summary-late" class="ml-2"></span>
-\f1 \'a4\'48
-\f0 </p>\
-            </div>\
-\
-            <div class="mb-6">\
-                <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">
-\f1 \'af\'ca\'ae\'75\'be\'c7\'a5\'cd\'ae\'79\'b8\'b9
-\f0 :</h3>\
-                <div id="absent-list" class="bg-red-50 dark:bg-red-900/20 p-3 rounded-lg min-h-[40px] text-red-700 dark:text-red-300">
-\f1 \'b5\'4c
-\f0 </div>\
-            </div>\
-\
-            <div>\
-                <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">
-\f1 \'bf\'f0\'a8\'ec\'be\'c7\'a5\'cd\'ae\'79\'b8\'b9\'bb\'50\'ae\'c9\'b6\'a1
-\f0 :</h3>\
-                <div id="late-list" class="bg-yellow-50 dark:bg-yellow-900/20 p-3 rounded-lg min-h-[40px] text-yellow-700 dark:text-yellow-300">
-\f1 \'b5\'4c
-\f0 </div>\
-            </div>\
-        </section>\
-    </div>\
-\
-    <script>\
-    // Dark mode support based on system preference and manual toggle\
-    const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>`;\
-    const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>`;\
-\
-    const themeToggleBtn = document.createElement('button');\
-    themeToggleBtn.className = 'fixed top-4 right-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 shadow-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors z-20';\
-    themeToggleBtn.setAttribute('aria-label', 'Toggle dark mode');\
-\
-    function applyTheme(isDark) \{\
-        if (isDark) \{\
-            document.documentElement.classList.add('dark');\
-            themeToggleBtn.innerHTML = sunIcon;\
-            localStorage.setItem('theme', 'dark');\
-        \} else \{\
-            document.documentElement.classList.remove('dark');\
-            themeToggleBtn.innerHTML = moonIcon;\
-            localStorage.setItem('theme', 'light');\
-        \}\
-    \}\
-\
-    // Check local storage first\
-    const savedTheme = localStorage.getItem('theme');\
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;\
-\
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) \{\
-        applyTheme(true);\
-    \} else \{\
-        applyTheme(false);\
-    \}\
-\
-    themeToggleBtn.addEventListener('click', () => \{\
-        applyTheme(!document.documentElement.classList.contains('dark'));\
-    \});\
-    document.body.appendChild(themeToggleBtn);\
-\
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => \{\
-        if (!localStorage.getItem('theme')) \{ // Only apply if no manual override\
-            applyTheme(event.matches);\
-        \}\
-    \});\
-\
-    // Global variable for student data\
-    let studentsData = [];\
-\
-    // DOM Elements\
-    const studentCountInput = document.getElementById('student-count');\
-    const generateTableBtn = document.getElementById('generate-table');\
-    const attendanceTableBody = document.getElementById('attendance-body');\
-    const presentCountEl = document.getElementById('present-count');\
-    const absentCountEl = document.getElementById('absent-count');\
-    const lateCountEl = document.getElementById('late-count');\
-    const totalCountEl = document.getElementById('total-count');\
-    const resetBtn = document.getElementById('reset-btn');\
-    const exportBtn = document.getElementById('export-btn');\
-    const editTab = document.getElementById('edit-tab');\
-    const viewTab = document.getElementById('view-tab');\
-    const editModeSection = document.getElementById('edit-mode');\
-    const viewModeSection = document.getElementById('view-mode');\
-    const summaryClassEl = document.getElementById('summary-class');\
-    const summaryPeriodEl = document.getElementById('summary-period');\
-    const summaryTotalEl = document.getElementById('summary-total');\
-    const summaryPresentEl = document.getElementById('summary-present');\
-    const summaryAbsentEl = document.getElementById('summary-absent');\
-    const summaryLateEl = document.getElementById('summary-late');\
-    const absentListEl = document.getElementById('absent-list');\
-    const lateListEl = document.getElementById('late-list');\
-    const classNameInput = document.getElementById('class-name');\
-    const classPeriodSelect = document.getElementById('class-period');\
-\
-    // Generate table function\
-    function generateTable() \{\
-        const studentCount = parseInt(studentCountInput.value) || 0;\
-        if (studentCount <= 0 || studentCount > 100) \{\
-            // Using a more subtle notification instead of alert\
-            showNotification('
-\f1 \'bd\'d0\'bf\'e9\'a4\'4a\'a6\'b3\'ae\'c4\'aa\'ba\'be\'c7\'a5\'cd\'a4\'48\'bc\'c6\'a1\'5d
-\f0 1-100
-\f1 \'a1\'5e
-\f0 ', 'error');\
-            return;\
-        \}\
-        \
-        studentsData = [];\
-        for (let i = 1; i <= studentCount; i++) \{\
-            studentsData.push(\{\
-                seatNumber: i,\
-                status: 'present', // Default to present\
-                lateTime: '00:05' // Default late time\
-            \});\
-        \}\
-        \
-        renderTable();\
-        updateStats();\
-        showNotification(`
-\f1 \'a4\'77\'a5\'cd\'a6\'a8
-\f0  $\{studentCount\} 
-\f1 \'a6\'ec\'be\'c7\'a5\'cd\'aa\'ba\'c2\'49\'a6\'57\'aa\'ed
-\f0 `, 'success');\
-    \}\
-\
-    // Render table function\
-    function renderTable() \{\
-        attendanceTableBody.innerHTML = ''; // Clear existing rows\
-        \
-        if (studentsData.length === 0) \{\
-            const placeholderRow = document.createElement('tr');\
-            placeholderRow.innerHTML = `<td colspan="3" class="text-center py-10 text-gray-500 dark:text-gray-400">
-\f1 \'bd\'d0\'a5\'fd\'c2\'49\'c0\'bb\'a1\'75\'a5\'cd\'a6\'a8\'aa\'ed\'ae\'e6\'a1\'76
-\f0 </td>`;\
-            attendanceTableBody.appendChild(placeholderRow);\
-            return;\
-        \}\
-\
-        studentsData.forEach((student, index) => \{\
-            const row = document.createElement('tr');\
-            let rowBgClass = 'bg-white dark:bg-gray-800';\
-            if (student.status === 'present') rowBgClass = 'bg-green-50 dark:bg-green-900/30';\
-            else if (student.status === 'absent') rowBgClass = 'bg-red-50 dark:bg-red-900/30';\
-            else if (student.status === 'late') rowBgClass = 'bg-yellow-50 dark:bg-yellow-900/30';\
-            row.className = `$\{rowBgClass\} transition-colors duration-200`;\
-\
-            // Seat Number\
-            const seatCell = document.createElement('td');\
-            seatCell.className = 'border-b dark:border-gray-700 px-3 py-3 text-center table-cell-content';\
-            seatCell.textContent = student.seatNumber;\
-            row.appendChild(seatCell);\
-\
-            // Status Buttons\
-            const statusCell = document.createElement('td');\
-            statusCell.className = 'border-b dark:border-gray-700 px-3 py-3 table-cell-content';\
-            const statusContainer = document.createElement('div');\
-            statusContainer.className = 'flex flex-wrap justify-center gap-1 sm:gap-2';\
-\
-            const options = [\
-                \{ value: 'present', text: '
-\f1 \'ae\'75
-\f0 ', color: 'bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700', textColor: 'text-white' \},\
-                \{ value: 'absent', text: '
-\f1 \'af\'ca
-\f0 ', color: 'bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700', textColor: 'text-white' \},\
-                \{ value: 'late', text: '
-\f1 \'bf\'f0
-\f0 ', color: 'bg-yellow-500 hover:bg-yellow-600 dark:bg-yellow-600 dark:hover:bg-yellow-700', textColor: 'text-white' \}\
-            ];\
-\
-            options.forEach(option => \{\
-                const btn = document.createElement('button');\
-                btn.className = `px-3 py-1.5 text-xs sm:text-sm rounded-md status-button $\{option.color\} $\{option.textColor\} $\{student.status === option.value ? 'active ring-2 ring-offset-2 ring-offset-white dark:ring-offset-gray-800 ring-blue-500 dark:ring-violet-400' : ''\}`;\
-                btn.textContent = option.text;\
-                btn.addEventListener('click', function() \{\
-                    studentsData[index].status = option.value;\
-                    renderTable(); // Re-render for visual update\
-                    updateStats();\
-                \});\
-                statusContainer.appendChild(btn);\
-            \});\
-            \
-            statusCell.appendChild(statusContainer);\
-            row.appendChild(statusCell);\
-\
-            // Late Time Input\
-            const timeCell = document.createElement('td');\
-            timeCell.className = 'border-b dark:border-gray-700 px-3 py-3 text-center table-cell-content';\
-            if (student.status === 'late') \{\
-                const timeInput = document.createElement('input');\
-                timeInput.type = 'time';\
-                timeInput.className = 'px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-sm bg-gray-50 dark:bg-gray-700 w-full max-w-[120px] focus:ring-primary focus:border-primary dark:focus:ring-violet-400 dark:focus:border-violet-400';\
-                timeInput.value = student.lateTime;\
-                timeInput.addEventListener('change', function() \{\
-                    studentsData[index].lateTime = this.value;\
-                    updateStats(); // Update summary if time changes\
-                \});\
-                timeCell.appendChild(timeInput);\
-            \} else \{\
-                timeCell.textContent = '\'97';\
-            \}\
-            row.appendChild(timeCell);\
-            attendanceTableBody.appendChild(row);\
-        \});\
-        totalCountEl.textContent = studentsData.length;\
-    \}\
-\
-    // Update statistics function\
-    function updateStats() \{\
-        const presentCount = studentsData.filter(s => s.status === 'present').length;\
-        const absentCount = studentsData.filter(s => s.status === 'absent').length;\
-        const lateCount = studentsData.filter(s => s.status === 'late').length;\
-\
-        presentCountEl.textContent = presentCount;\
-        absentCountEl.textContent = absentCount;\
-        lateCountEl.textContent = lateCount;\
-        totalCountEl.textContent = studentsData.length;\
-\
-        // Update summary page info\
-        summaryClassEl.textContent = classNameInput.value || '
-\f1 \'a5\'bc\'ab\'fc\'a9\'77
-\f0 ';\
-        summaryPeriodEl.textContent = classPeriodSelect.value;\
-        summaryTotalEl.textContent = studentsData.length;\
-        summaryPresentEl.textContent = presentCount;\
-        summaryAbsentEl.textContent = absentCount;\
-        summaryLateEl.textContent = lateCount;\
-\
-        const absentStudents = studentsData.filter(s => s.status === 'absent').map(s => s.seatNumber).join(', ');\
-        absentListEl.textContent = absentStudents || '
-\f1 \'b5\'4c
-\f0 ';\
-\
-        const lateStudents = studentsData.filter(s => s.status === 'late')\
-            .map(s => `
-\f1 \'ae\'79\'b8\'b9
-\f0  $\{s.seatNumber\}: $\{s.lateTime || '
-\f1 \'a5\'bc\'b0\'4f\'bf\'fd
-\f0 '\}`);\
-        lateListEl.textContent = lateStudents.length ? lateStudents.join('
-\f1 \'a1\'46
-\f0  ') : '
-\f1 \'b5\'4c
-\f0 ';\
-    \}\
-\
-    // Reset table function\
-    function resetTable() \{\
-        if (studentsData.length === 0) \{\
-            showNotification('
-\f1 \'aa\'ed\'ae\'e6\'ac\'b0\'aa\'c5\'a1\'41\'b5\'4c\'bb\'dd\'ad\'ab\'b8\'6d\'a1\'43
-\f0 ', 'info');\
-            return;\
-        \}\
-        // Use a custom modal for confirmation for better UX\
-        showConfirmationModal('
-\f1 \'bd\'54\'a9\'77\'ad\'6e\'ad\'ab\'b8\'6d\'aa\'ed\'ae\'e6\'b6\'dc\'a1\'48\'a9\'d2\'a6\'b3\'a4\'77\'bc\'d0\'b0\'4f\'aa\'ba\'a5\'58\'af\'ca\'ae\'75\'b1\'4e\'b3\'51\'b2\'4d\'b0\'a3\'a1\'43
-\f0 ', () => \{\
-            studentsData.forEach(student => \{\
-                student.status = 'present';\
-                student.lateTime = '00:05';\
-            \});\
-            renderTable();\
-            updateStats();\
-            showNotification('
-\f1 \'aa\'ed\'ae\'e6\'a4\'77\'ad\'ab\'b8\'6d\'a1\'43
-\f0 ', 'success');\
-        \});\
-    \}\
-\
-    // Export to CSV function\
-    function exportCSV() \{\
-        if (studentsData.length === 0) \{\
-            showNotification('
-\f1 \'a8\'53\'a6\'b3\'b8\'ea\'ae\'c6\'a5\'69\'b6\'d7\'a5\'58\'a1\'43
-\f0 ', 'info');\
-            return;\
-        \}\
-        const className = classNameInput.value || '
-\f1 \'a5\'bc\'a9\'52\'a6\'57\'af\'5a\'af\'c5
-\f0 ';\
-        const classPeriod = classPeriodSelect.value;\
-        const date = new Date().toLocaleDateString('zh-TW', \{ year: 'numeric', month: '2-digit', day: '2-digit' \}).replace(/\\//g, '-');\
-\
-        let csvContent = "\\uFEFF"; // Adding BOM for Excel UTF-8 compatibility\
-        csvContent += `
-\f1 \'af\'5a\'af\'c5
-\f0 ,"$\{className\}"\\n`; // Enclose in quotes if class name might have commas\
-        csvContent += `
-\f1 \'b8\'60\'a6\'b8
-\f0 ,"
-\f1 \'b2\'c4
-\f0 $\{classPeriod\}
-\f1 \'b8\'60
-\f0 "\\n`;\
-        csvContent += `
-\f1 \'a4\'e9\'b4\'c1
-\f0 ,"$\{date\}"\\n\\n`;\
-        csvContent += '
-\f1 \'ae\'79\'b8\'b9
-\f0 ,
-\f1 \'aa\'ac\'ba\'41
-\f0 ,
-\f1 \'bf\'f0\'a8\'ec\'ae\'c9\'b6\'a1
-\f0 \\n';\
-\
-        studentsData.forEach(student => \{\
-            const statusText = student.status === 'present' ? '
-\f1 \'a5\'58\'ae\'75
-\f0 ' : \
-                               (student.status === 'absent' ? '
-\f1 \'af\'ca\'ae\'75
-\f0 ' : '
-\f1 \'bf\'f0\'a8\'ec
-\f0 ');\
-            const lateTimeText = student.status === 'late' ? student.lateTime : '';\
-            csvContent += `$\{student.seatNumber\},"$\{statusText\}","$\{lateTimeText\}"\\n`; // Enclose text fields in quotes\
-        \});\
-        \
-        const blob = new Blob([csvContent], \{ type: 'text/csv;charset=utf-8;' \});\
-        const url = URL.createObjectURL(blob);\
-        const link = document.createElement('a');\
-        link.href = url;\
-        link.setAttribute('download', `$\{className\}_
-\f1 \'b2\'c4
-\f0 $\{classPeriod\}
-\f1 \'b8\'60
-\f0 _
-\f1 \'a5\'58\'af\'ca\'ae\'75
-\f0 _$\{date\}.csv`);\
-        document.body.appendChild(link);\
-        link.click();\
-        document.body.removeChild(link);\
-        showNotification('CSV
-\f1 \'c0\'c9\'ae\'d7\'a4\'77\'b6\'7d\'a9\'6c\'a4\'55\'b8\'fc\'a1\'43
-\f0 ', 'success');\
-    \}\
-\
-    // Tab switching function\
-    function switchTab(activeTab) \{\
-        if (activeTab === 'edit') \{\
-            editModeSection.classList.remove('hidden');\
-            viewModeSection.classList.add('hidden');\
-            editTab.classList.add('border-primary', 'text-primary', 'dark:border-violet-400', 'dark:text-violet-400');\
-            editTab.classList.remove('border-transparent', 'text-gray-500', 'dark:text-gray-400', 'hover:text-primary', 'dark:hover:text-violet-400', 'hover:border-gray-400', 'dark:hover:border-gray-500');\
-            viewTab.classList.add('border-transparent', 'text-gray-500', 'dark:text-gray-400', 'hover:text-primary', 'dark:hover:text-violet-400', 'hover:border-gray-400', 'dark:hover:border-gray-500');\
-            viewTab.classList.remove('border-primary', 'text-primary', 'dark:border-violet-400', 'dark:text-violet-400');\
-        \} else \{ // view tab\
-            viewModeSection.classList.remove('hidden');\
-            editModeSection.classList.add('hidden');\
-            viewTab.classList.add('border-primary', 'text-primary', 'dark:border-violet-400', 'dark:text-violet-400');\
-            viewTab.classList.remove('border-transparent', 'text-gray-500', 'dark:text-gray-400', 'hover:text-primary', 'dark:hover:text-violet-400', 'hover:border-gray-400', 'dark:hover:border-gray-500');\
-            editTab.classList.add('border-transparent', 'text-gray-500', 'dark:text-gray-400', 'hover:text-primary', 'dark:hover:text-violet-400', 'hover:border-gray-400', 'dark:hover:border-gray-500');\
-            editTab.classList.remove('border-primary', 'text-primary', 'dark:border-violet-400', 'dark:text-violet-400');\
-            updateStats(); // Ensure summary is up-to-date\
-        \}\
-    \}\
-\
-    // Show notification function\
-    function showNotification(message, type = 'info') \{\
-        const notificationArea = document.getElementById('notification-area') || createNotificationArea();\
-        \
-        const notification = document.createElement('div');\
-        let bgColorClass = 'bg-blue-500 dark:bg-blue-600'; // Default info\
-        let iconSVG = `<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;\
-\
-        if (type === 'success') \{\
-            bgColorClass = 'bg-green-500 dark:bg-green-600';\
-            iconSVG = `<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;\
-        \}\
-        if (type === 'error') \{\
-            bgColorClass = 'bg-red-500 dark:bg-red-600';\
-            iconSVG = `<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;\
-        \}\
-        \
-        notification.className = `flex items-center $\{bgColorClass\} text-white px-4 py-3 rounded-lg shadow-lg transition-all duration-300 ease-out transform translate-y-full opacity-0 mb-2`;\
-        notification.innerHTML = `$\{iconSVG\}<span>$\{message\}</span>`;\
-        notificationArea.prepend(notification); // Add to top of notification area\
-\
-        // Animate in\
-        requestAnimationFrame(() => \{\
-            notification.classList.remove('translate-y-full', 'opacity-0');\
-            notification.classList.add('translate-y-0', 'opacity-100');\
-        \});\
-        \
-\
-        setTimeout(() => \{\
-            notification.style.opacity = '0';\
-            notification.style.transform = 'translateX(100%)'; // Slide out\
-            setTimeout(() => \{\
-                notification.remove();\
-                if (notificationArea.children.length === 0) \{\
-                    notificationArea.remove();\
-                \}\
-            \}, 300);\
-        \}, 3000);\
-    \}\
-\
-    function createNotificationArea() \{\
-        let area = document.getElementById('notification-area');\
-        if (!area) \{\
-            area = document.createElement('div');\
-            area.id = 'notification-area';\
-            area.className = 'fixed bottom-5 right-5 z-50 flex flex-col items-end';\
-            document.body.appendChild(area);\
-        \}\
-        return area;\
-    \}\
-\
-    // Custom Confirmation Modal\
-    function showConfirmationModal(message, onConfirm) \{\
-        const modalOverlay = document.createElement('div');\
-        modalOverlay.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 transition-opacity duration-300';\
-        \
-        const modalContent = document.createElement('div');\
-        modalContent.className = 'bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl max-w-sm w-full transform scale-95 transition-transform duration-300';\
-        \
-        const messageP = document.createElement('p');\
-        messageP.className = 'text-gray-800 dark:text-gray-200 mb-6 text-center';\
-        messageP.textContent = message;\
-        \
-        const buttonContainer = document.createElement('div');\
-        buttonContainer.className = 'flex justify-end space-x-3';\
-        \
-        const cancelButton = document.createElement('button');\
-        cancelButton.className = 'px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 text-gray-800 dark:text-gray-200 rounded-md font-medium transition-colors';\
-        cancelButton.textContent = '
-\f1 \'a8\'fa\'ae\'f8
-\f0 ';\
-        cancelButton.onclick = () => \{\
-            modalContent.classList.remove('scale-100');\
-            modalContent.classList.add('scale-95');\
-            modalOverlay.style.opacity = '0';\
-            setTimeout(() => modalOverlay.remove(), 300);\
-        \};\
-        \
-        const confirmButton = document.createElement('button');\
-        confirmButton.className = 'px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-md font-medium transition-colors';\
-        confirmButton.textContent = '
-\f1 \'bd\'54\'a9\'77
-\f0 ';\
-        confirmButton.onclick = () => \{\
-            onConfirm();\
-            modalContent.classList.remove('scale-100');\
-            modalContent.classList.add('scale-95');\
-            modalOverlay.style.opacity = '0';\
-            setTimeout(() => modalOverlay.remove(), 300);\
-        \};\
-        \
-        buttonContainer.appendChild(cancelButton);\
-        buttonContainer.appendChild(confirmButton);\
-        modalContent.appendChild(messageP);\
-        modalContent.appendChild(buttonContainer);\
-        modalOverlay.appendChild(modalContent);\
-        document.body.appendChild(modalOverlay);\
-\
-        // Animate in\
-        requestAnimationFrame(() => \{\
-            modalOverlay.style.opacity = '1';\
-            modalContent.classList.add('scale-100');\
-        \});\
-    \}\
-\
-\
-    // Event Listeners\
-    generateTableBtn.addEventListener('click', generateTable);\
-    resetBtn.addEventListener('click', resetTable);\
-    exportBtn.addEventListener('click', exportCSV);\
-    editTab.addEventListener('click', () => switchTab('edit'));\
-    viewTab.addEventListener('click', () => switchTab('view'));\
-\
-    // Initial table generation (optional, or based on default student count)\
-    // generateTable(); // You might want to call this on page load if there's a default student count\
-    renderTable(); // Render empty state initially\
-    updateStats(); // Initialize stats\
-    </script>\
-</body>\
-</html>\
-\
-}
+    <div class="container mx-auto px-4 py-6 sm:py-8 relative z-10">
+        <header class="mb-6 sm:mb-8 text-center">
+            <h1 class="text-3xl sm:text-4xl font-bold text-primary dark:text-violet-400">Gloria老師班級出缺勤紀錄表</h1>
+            <div class="mt-3 mb-5 p-3 bg-secondary text-white rounded-lg shadow-md">
+                <p class="font-bold text-lg sm:text-xl">教師：Gloria吳秀蘭老師</p>
+                <p class="text-sm sm:text-base">Google認證講師, 英文兼台語教師</p>
+            </div>
+        </header>
+
+        <section id="setup-form" class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 mb-6 sm:mb-8 transition-colors duration-300">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+                <div>
+                    <label for="class-name" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">班級名稱</label>
+                    <input type="text" id="class-name" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-base bg-gray-50 dark:bg-gray-700 focus:ring-primary focus:border-primary dark:focus:ring-violet-400 dark:focus:border-violet-400 transition-shadow" placeholder="如：三年二班">
+                </div>
+                <div>
+                    <label for="class-period" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">第幾節課</label>
+                    <select id="class-period" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-base bg-gray-50 dark:bg-gray-700 focus:ring-primary focus:border-primary dark:focus:ring-violet-400 dark:focus:border-violet-400 transition-shadow">
+                        <option value="1">第1節</option>
+                        <option value="2">第2節</option>
+                        <option value="3">第3節</option>
+                        <option value="4">第4節</option>
+                        <option value="5">第5節</option>
+                        <option value="6">第6節</option>
+                        <option value="7">第7節</option>
+                        <option value="8">第8節</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="student-count" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">學生人數</label>
+                    <div class="flex">
+                        <input type="number" id="student-count" min="1" max="100" class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-l-lg text-base bg-gray-50 dark:bg-gray-700 focus:ring-primary focus:border-primary dark:focus:ring-violet-400 dark:focus:border-violet-400 transition-shadow" placeholder="輸入人數" value="30">
+                        <button id="generate-table" class="px-4 py-2 bg-primary hover:bg-violet-700 dark:bg-violet-500 dark:hover:bg-violet-600 text-white rounded-r-lg font-medium transition-colors">生成表格</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <nav class="flex mb-4 border-b border-gray-300 dark:border-gray-700">
+            <button id="edit-tab" class="px-4 py-3 -mb-px border-b-2 border-primary text-primary dark:border-violet-400 dark:text-violet-400 flex-1 md:flex-none font-semibold">編輯模式</button>
+            <button id="view-tab" class="px-4 py-3 border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-violet-400 hover:border-gray-400 dark:hover:border-gray-500 flex-1 md:flex-none font-semibold">查看模式</button>
+        </nav>
+
+        <section id="edit-mode" class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 mb-6 sm:mb-8 transition-colors duration-300">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-4 sm:mb-6 text-center">
+                <div class="bg-green-100 dark:bg-green-800/30 p-3 rounded-lg">
+                    <div class="text-sm text-green-700 dark:text-green-300">出席</div>
+                    <div id="present-count" class="text-2xl font-bold text-green-600 dark:text-green-400">0</div>
+                </div>
+                <div class="bg-red-100 dark:bg-red-800/30 p-3 rounded-lg">
+                    <div class="text-sm text-red-700 dark:text-red-300">缺席</div>
+                    <div id="absent-count" class="text-2xl font-bold text-red-600 dark:text-red-400">0</div>
+                </div>
+                <div class="bg-yellow-100 dark:bg-yellow-800/30 p-3 rounded-lg">
+                    <div class="text-sm text-yellow-700 dark:text-yellow-300">遲到</div>
+                    <div id="late-count" class="text-2xl font-bold text-yellow-600 dark:text-yellow-400">0</div>
+                </div>
+                <div class="bg-blue-100 dark:bg-blue-800/30 p-3 rounded-lg">
+                    <div class="text-sm text-blue-700 dark:text-blue-300">總人數</div>
+                    <div id="total-count" class="text-2xl font-bold text-blue-600 dark:text-blue-400">0</div>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+                <table id="attendance-table" class="w-full min-w-max">
+                    <thead class="bg-gray-50 dark:bg-gray-700">
+                        <tr>
+                            <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">座號</th>
+                            <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">出缺席狀態</th>
+                            <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">遲到時間</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendance-body" class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                        <tr><td colspan="3" class="text-center py-10 text-gray-500 dark:text-gray-400">請先點擊「生成表格」</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-6 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3">
+                <button id="reset-btn" class="w-full sm:w-auto px-5 py-2.5 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-lg font-medium transition-colors">重置表格</button>
+                <button id="export-btn" class="w-full sm:w-auto px-5 py-2.5 bg-primary hover:bg-violet-700 dark:bg-violet-500 dark:hover:bg-violet-600 text-white rounded-lg font-medium transition-colors">匯出CSV</button>
+            </div>
+        </section>
+
+        <section id="view-mode" class="hidden bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 mb-6 sm:mb-8 transition-colors duration-300">
+            <h2 class="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-900 dark:text-white">出缺席紀錄摘要</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 text-gray-700 dark:text-gray-300">
+                <p><strong class="font-medium">班級:</strong> <span id="summary-class" class="ml-2"></span></p>
+                <p><strong class="font-medium">節次:</strong> 第<span id="summary-period" class="ml-1"></span>節</p>
+                <p><strong class="font-medium">總人數:</strong> <span id="summary-total" class="ml-2"></span>人</p>
+                <p><strong class="font-medium">出席:</strong> <span id="summary-present" class="ml-2"></span>人</p>
+                <p><strong class="font-medium">缺席:</strong> <span id="summary-absent" class="ml-2"></span>人</p>
+                <p><strong class="font-medium">遲到:</strong> <span id="summary-late" class="ml-2"></span>人</p>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">缺席學生座號:</h3>
+                <div id="absent-list" class="bg-red-50 dark:bg-red-900/20 p-3 rounded-lg min-h-[40px] text-red-700 dark:text-red-300">無</div>
+            </div>
+
+            <div>
+                <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">遲到學生座號與時間:</h3>
+                <div id="late-list" class="bg-yellow-50 dark:bg-yellow-900/20 p-3 rounded-lg min-h-[40px] text-yellow-700 dark:text-yellow-300">無</div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+    // Dark mode support based on system preference and manual toggle
+    const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>`;
+    const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>`;
+
+    const themeToggleBtn = document.createElement('button');
+    themeToggleBtn.className = 'fixed top-4 right-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 shadow-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors z-20';
+    themeToggleBtn.setAttribute('aria-label', 'Toggle dark mode');
+
+    function applyTheme(isDark) {
+        if (isDark) {
+            document.documentElement.classList.add('dark');
+            themeToggleBtn.innerHTML = sunIcon;
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleBtn.innerHTML = moonIcon;
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    // Check local storage first
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        applyTheme(true);
+    } else {
+        applyTheme(false);
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        applyTheme(!document.documentElement.classList.contains('dark'));
+    });
+    document.body.appendChild(themeToggleBtn);
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+        if (!localStorage.getItem('theme')) { // Only apply if no manual override
+            applyTheme(event.matches);
+        }
+    });
+
+    // Global variable for student data
+    let studentsData = [];
+
+    // DOM Elements
+    const studentCountInput = document.getElementById('student-count');
+    const generateTableBtn = document.getElementById('generate-table');
+    const attendanceTableBody = document.getElementById('attendance-body');
+    const presentCountEl = document.getElementById('present-count');
+    const absentCountEl = document.getElementById('absent-count');
+    const lateCountEl = document.getElementById('late-count');
+    const totalCountEl = document.getElementById('total-count');
+    const resetBtn = document.getElementById('reset-btn');
+    const exportBtn = document.getElementById('export-btn');
+    const editTab = document.getElementById('edit-tab');
+    const viewTab = document.getElementById('view-tab');
+    const editModeSection = document.getElementById('edit-mode');
+    const viewModeSection = document.getElementById('view-mode');
+    const summaryClassEl = document.getElementById('summary-class');
+    const summaryPeriodEl = document.getElementById('summary-period');
+    const summaryTotalEl = document.getElementById('summary-total');
+    const summaryPresentEl = document.getElementById('summary-present');
+    const summaryAbsentEl = document.getElementById('summary-absent');
+    const summaryLateEl = document.getElementById('summary-late');
+    const absentListEl = document.getElementById('absent-list');
+    const lateListEl = document.getElementById('late-list');
+    const classNameInput = document.getElementById('class-name');
+    const classPeriodSelect = document.getElementById('class-period');
+
+    // Generate table function
+    function generateTable() {
+        const studentCount = parseInt(studentCountInput.value) || 0;
+        if (studentCount <= 0 || studentCount > 100) {
+            // Using a more subtle notification instead of alert
+            showNotification('請輸入有效的學生人數（1-100）', 'error');
+            return;
+        }
+        
+        studentsData = [];
+        for (let i = 1; i <= studentCount; i++) {
+            studentsData.push({
+                seatNumber: i,
+                status: 'present', // Default to present
+                lateTime: '00:05' // Default late time
+            });
+        }
+        
+        renderTable();
+        updateStats();
+        showNotification(`已生成 ${studentCount} 位學生的點名表`, 'success');
+    }
+
+    // Render table function
+    function renderTable() {
+        attendanceTableBody.innerHTML = ''; // Clear existing rows
+        
+        if (studentsData.length === 0) {
+            const placeholderRow = document.createElement('tr');
+            placeholderRow.innerHTML = `<td colspan="3" class="text-center py-10 text-gray-500 dark:text-gray-400">請先點擊「生成表格」</td>`;
+            attendanceTableBody.appendChild(placeholderRow);
+            return;
+        }
+
+        studentsData.forEach((student, index) => {
+            const row = document.createElement('tr');
+            let rowBgClass = 'bg-white dark:bg-gray-800';
+            if (student.status === 'present') rowBgClass = 'bg-green-50 dark:bg-green-900/30';
+            else if (student.status === 'absent') rowBgClass = 'bg-red-50 dark:bg-red-900/30';
+            else if (student.status === 'late') rowBgClass = 'bg-yellow-50 dark:bg-yellow-900/30';
+            row.className = `${rowBgClass} transition-colors duration-200`;
+
+            // Seat Number
+            const seatCell = document.createElement('td');
+            seatCell.className = 'border-b dark:border-gray-700 px-3 py-3 text-center table-cell-content';
+            seatCell.textContent = student.seatNumber;
+            row.appendChild(seatCell);
+
+            // Status Buttons
+            const statusCell = document.createElement('td');
+            statusCell.className = 'border-b dark:border-gray-700 px-3 py-3 table-cell-content';
+            const statusContainer = document.createElement('div');
+            statusContainer.className = 'flex flex-wrap justify-center gap-1 sm:gap-2';
+
+            const options = [
+                { value: 'present', text: '席', color: 'bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700', textColor: 'text-white' },
+                { value: 'absent', text: '缺', color: 'bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700', textColor: 'text-white' },
+                { value: 'late', text: '遲', color: 'bg-yellow-500 hover:bg-yellow-600 dark:bg-yellow-600 dark:hover:bg-yellow-700', textColor: 'text-white' }
+            ];
+
+            options.forEach(option => {
+                const btn = document.createElement('button');
+                btn.className = `px-3 py-1.5 text-xs sm:text-sm rounded-md status-button ${option.color} ${option.textColor} ${student.status === option.value ? 'active ring-2 ring-offset-2 ring-offset-white dark:ring-offset-gray-800 ring-blue-500 dark:ring-violet-400' : ''}`;
+                btn.textContent = option.text;
+                btn.addEventListener('click', function() {
+                    studentsData[index].status = option.value;
+                    renderTable(); // Re-render for visual update
+                    updateStats();
+                });
+                statusContainer.appendChild(btn);
+            });
+            
+            statusCell.appendChild(statusContainer);
+            row.appendChild(statusCell);
+
+            // Late Time Input
+            const timeCell = document.createElement('td');
+            timeCell.className = 'border-b dark:border-gray-700 px-3 py-3 text-center table-cell-content';
+            if (student.status === 'late') {
+                const timeInput = document.createElement('input');
+                timeInput.type = 'time';
+                timeInput.className = 'px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-sm bg-gray-50 dark:bg-gray-700 w-full max-w-[120px] focus:ring-primary focus:border-primary dark:focus:ring-violet-400 dark:focus:border-violet-400';
+                timeInput.value = student.lateTime;
+                timeInput.addEventListener('change', function() {
+                    studentsData[index].lateTime = this.value;
+                    updateStats(); // Update summary if time changes
+                });
+                timeCell.appendChild(timeInput);
+            } else {
+                timeCell.textContent = '—';
+            }
+            row.appendChild(timeCell);
+            attendanceTableBody.appendChild(row);
+        });
+        totalCountEl.textContent = studentsData.length;
+    }
+
+    // Update statistics function
+    function updateStats() {
+        const presentCount = studentsData.filter(s => s.status === 'present').length;
+        const absentCount = studentsData.filter(s => s.status === 'absent').length;
+        const lateCount = studentsData.filter(s => s.status === 'late').length;
+
+        presentCountEl.textContent = presentCount;
+        absentCountEl.textContent = absentCount;
+        lateCountEl.textContent = lateCount;
+        totalCountEl.textContent = studentsData.length;
+
+        // Update summary page info
+        summaryClassEl.textContent = classNameInput.value || '未指定';
+        summaryPeriodEl.textContent = classPeriodSelect.value;
+        summaryTotalEl.textContent = studentsData.length;
+        summaryPresentEl.textContent = presentCount;
+        summaryAbsentEl.textContent = absentCount;
+        summaryLateEl.textContent = lateCount;
+
+        const absentStudents = studentsData.filter(s => s.status === 'absent').map(s => s.seatNumber).join(', ');
+        absentListEl.textContent = absentStudents || '無';
+
+        const lateStudents = studentsData.filter(s => s.status === 'late')
+            .map(s => `座號 ${s.seatNumber}: ${s.lateTime || '未記錄'}`);
+        lateListEl.textContent = lateStudents.length ? lateStudents.join('； ') : '無';
+    }
+
+    // Reset table function
+    function resetTable() {
+        if (studentsData.length === 0) {
+            showNotification('表格為空，無需重置。', 'info');
+            return;
+        }
+        // Use a custom modal for confirmation for better UX
+        showConfirmationModal('確定要重置表格嗎？所有已標記的出缺席將被清除。', () => {
+            studentsData.forEach(student => {
+                student.status = 'present';
+                student.lateTime = '00:05';
+            });
+            renderTable();
+            updateStats();
+            showNotification('表格已重置。', 'success');
+        });
+    }
+
+    // Export to CSV function
+    function exportCSV() {
+        if (studentsData.length === 0) {
+            showNotification('沒有資料可匯出。', 'info');
+            return;
+        }
+        const className = classNameInput.value || '未命名班級';
+        const classPeriod = classPeriodSelect.value;
+        const date = new Date().toLocaleDateString('zh-TW', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '-');
+
+        let csvContent = "\uFEFF"; // Adding BOM for Excel UTF-8 compatibility
+        csvContent += `班級,"${className}"\n`; // Enclose in quotes if class name might have commas
+        csvContent += `節次,"第${classPeriod}節"\n`;
+        csvContent += `日期,"${date}"\n\n`;
+        csvContent += '座號,狀態,遲到時間\n';
+
+        studentsData.forEach(student => {
+            const statusText = student.status === 'present' ? '出席' : 
+                               (student.status === 'absent' ? '缺席' : '遲到');
+            const lateTimeText = student.status === 'late' ? student.lateTime : '';
+            csvContent += `${student.seatNumber},"${statusText}","${lateTimeText}"\n`; // Enclose text fields in quotes
+        });
+        
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `${className}_第${classPeriod}節_出缺席_${date}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showNotification('CSV檔案已開始下載。', 'success');
+    }
+
+    // Tab switching function
+    function switchTab(activeTab) {
+        if (activeTab === 'edit') {
+            editModeSection.classList.remove('hidden');
+            viewModeSection.classList.add('hidden');
+            editTab.classList.add('border-primary', 'text-primary', 'dark:border-violet-400', 'dark:text-violet-400');
+            editTab.classList.remove('border-transparent', 'text-gray-500', 'dark:text-gray-400', 'hover:text-primary', 'dark:hover:text-violet-400', 'hover:border-gray-400', 'dark:hover:border-gray-500');
+            viewTab.classList.add('border-transparent', 'text-gray-500', 'dark:text-gray-400', 'hover:text-primary', 'dark:hover:text-violet-400', 'hover:border-gray-400', 'dark:hover:border-gray-500');
+            viewTab.classList.remove('border-primary', 'text-primary', 'dark:border-violet-400', 'dark:text-violet-400');
+        } else { // view tab
+            viewModeSection.classList.remove('hidden');
+            editModeSection.classList.add('hidden');
+            viewTab.classList.add('border-primary', 'text-primary', 'dark:border-violet-400', 'dark:text-violet-400');
+            viewTab.classList.remove('border-transparent', 'text-gray-500', 'dark:text-gray-400', 'hover:text-primary', 'dark:hover:text-violet-400', 'hover:border-gray-400', 'dark:hover:border-gray-500');
+            editTab.classList.add('border-transparent', 'text-gray-500', 'dark:text-gray-400', 'hover:text-primary', 'dark:hover:text-violet-400', 'hover:border-gray-400', 'dark:hover:border-gray-500');
+            editTab.classList.remove('border-primary', 'text-primary', 'dark:border-violet-400', 'dark:text-violet-400');
+            updateStats(); // Ensure summary is up-to-date
+        }
+    }
+
+    // Show notification function
+    function showNotification(message, type = 'info') {
+        const notificationArea = document.getElementById('notification-area') || createNotificationArea();
+        
+        const notification = document.createElement('div');
+        let bgColorClass = 'bg-blue-500 dark:bg-blue-600'; // Default info
+        let iconSVG = `<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+
+        if (type === 'success') {
+            bgColorClass = 'bg-green-500 dark:bg-green-600';
+            iconSVG = `<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+        }
+        if (type === 'error') {
+            bgColorClass = 'bg-red-500 dark:bg-red-600';
+            iconSVG = `<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+        }
+        
+        notification.className = `flex items-center ${bgColorClass} text-white px-4 py-3 rounded-lg shadow-lg transition-all duration-300 ease-out transform translate-y-full opacity-0 mb-2`;
+        notification.innerHTML = `${iconSVG}<span>${message}</span>`;
+        notificationArea.prepend(notification); // Add to top of notification area
+
+        // Animate in
+        requestAnimationFrame(() => {
+            notification.classList.remove('translate-y-full', 'opacity-0');
+            notification.classList.add('translate-y-0', 'opacity-100');
+        });
+        
+
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(100%)'; // Slide out
+            setTimeout(() => {
+                notification.remove();
+                if (notificationArea.children.length === 0) {
+                    notificationArea.remove();
+                }
+            }, 300);
+        }, 3000);
+    }
+
+    function createNotificationArea() {
+        let area = document.getElementById('notification-area');
+        if (!area) {
+            area = document.createElement('div');
+            area.id = 'notification-area';
+            area.className = 'fixed bottom-5 right-5 z-50 flex flex-col items-end';
+            document.body.appendChild(area);
+        }
+        return area;
+    }
+
+    // Custom Confirmation Modal
+    function showConfirmationModal(message, onConfirm) {
+        const modalOverlay = document.createElement('div');
+        modalOverlay.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 transition-opacity duration-300';
+        
+        const modalContent = document.createElement('div');
+        modalContent.className = 'bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl max-w-sm w-full transform scale-95 transition-transform duration-300';
+        
+        const messageP = document.createElement('p');
+        messageP.className = 'text-gray-800 dark:text-gray-200 mb-6 text-center';
+        messageP.textContent = message;
+        
+        const buttonContainer = document.createElement('div');
+        buttonContainer.className = 'flex justify-end space-x-3';
+        
+        const cancelButton = document.createElement('button');
+        cancelButton.className = 'px-4 py-2 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 text-gray-800 dark:text-gray-200 rounded-md font-medium transition-colors';
+        cancelButton.textContent = '取消';
+        cancelButton.onclick = () => {
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            modalOverlay.style.opacity = '0';
+            setTimeout(() => modalOverlay.remove(), 300);
+        };
+        
+        const confirmButton = document.createElement('button');
+        confirmButton.className = 'px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-md font-medium transition-colors';
+        confirmButton.textContent = '確定';
+        confirmButton.onclick = () => {
+            onConfirm();
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            modalOverlay.style.opacity = '0';
+            setTimeout(() => modalOverlay.remove(), 300);
+        };
+        
+        buttonContainer.appendChild(cancelButton);
+        buttonContainer.appendChild(confirmButton);
+        modalContent.appendChild(messageP);
+        modalContent.appendChild(buttonContainer);
+        modalOverlay.appendChild(modalContent);
+        document.body.appendChild(modalOverlay);
+
+        // Animate in
+        requestAnimationFrame(() => {
+            modalOverlay.style.opacity = '1';
+            modalContent.classList.add('scale-100');
+        });
+    }
+
+
+    // Event Listeners
+    generateTableBtn.addEventListener('click', generateTable);
+    resetBtn.addEventListener('click', resetTable);
+    exportBtn.addEventListener('click', exportCSV);
+    editTab.addEventListener('click', () => switchTab('edit'));
+    viewTab.addEventListener('click', () => switchTab('view'));
+
+    // Initial table generation (optional, or based on default student count)
+    // generateTable(); // You might want to call this on page load if there's a default student count
+    renderTable(); // Render empty state initially
+    updateStats(); // Initialize stats
+    </script>
+</body>
+</html>
+
